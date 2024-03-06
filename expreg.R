@@ -11,9 +11,9 @@ linreg <- function(X, Y) {
 
   curve(a * exp(b * x), col = "blue", add = TRUE)
 
-	lines(X, a*exp(b*x), type="l" col="red");
+	lines(X, exp(a*X) * exp(b), type="l" col="red");
 }
 
 X <- c(1, 2, 3, 4)
 Y <- c(21.6, 163.79, 1210.29, 8942.87)
-linreg(X, Y)
+linreg(X, log(Y))
