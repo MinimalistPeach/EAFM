@@ -4,10 +4,18 @@ rolldice <- function(N,K,p)
 
   for(i in 1:length(K)) 
   {
-    sum = sum + ((K[i] - N*p[i]) ^ 2) / N*p[i];
+    sum = sum + ((K[i] - N*p[i]) ^ 2) / (N*p[i]);
   }
 
-  print(sum);
+  if(sum<11.1) 
+  {
+    print('elfogadjuk')
+  } 
+  else 
+  {
+    print('elutasítjuk')
+  }
+  print(sum)
 }
 
 N = 600;

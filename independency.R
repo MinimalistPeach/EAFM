@@ -14,11 +14,7 @@ independency <- function(K){
     sumR = sumR + sumS;
   }
   result = n*sumR;
-  if (result < qchisq(p=.95, df=(r-1)*(s-1) )){
-     print('Az erteket elfogadjuk!\n')
-  } else {
-     print('Az erteket nem fogadjuk el!\n')
-  }
+  return(result)
 }
 
 matrix <- matrix(c(42,28,3,17,89,21), nrow = 3, ncol = 2)

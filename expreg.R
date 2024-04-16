@@ -1,19 +1,28 @@
-linreg <- function(X, Y) {
-  plot(X, Y)
-  n <- length(X)
-  sum_XY <- sum(X * Y)
-  sum_X <- sum(X)
-  sum_Y <- sum(Y)
-  sum_X_square <- sum(X^2)
+V_values = c(3, 5, 7, 9, 11)
+U_values = log10(V_values)
 
-  b <- (n * sum_XY - sum_X * sum_Y) / (n * sum_X_square - sum_X^2)
-  a <- (sum_Y - b * sum_X) / n
+linear_regression <- function(X, Y) {
+    n <- length(X)
+    plot(X, Y)
 
-  curve(a * exp(b * x), col = "blue", add = TRUE)
+    sum_Y <- sum(Y)
+    sum_X <- sum(X)
+    sum_XY <- sum(X * Y)
+    sum_X_squared <- sum(X^2)
 
-	lines(X, exp(a*X) * exp(b), type="l" col="red");
+    sum_a1 <- (sum_XY * n) - (sum_Y * sum_X)
+    sum_a2 <- (sum_X_squared * n) - (sum_X * sum_X)
+    a <- sum_a1/sum_a2
+
+    sum_b1 <- (sum_X_squared * sum_Y) - (sum_X * sum_XY)
+    sum_b2 <- (sum_X_squared * n) - (sum_X * sum_X)
+    b <- sum_b1 / sum_b2
+
+    cat("(a) =", a, "\n")
+    cat("(b) =", b, "\n")
+
+    e <- 2.71  
+
+    lines(X, a * e^(b * X), type = "l", lty = 1, col = "blue")
 }
-
-X <- c(1, 2, 3, 4)
-Y <- c(21.6, 163.79, 1210.29, 8942.87)
-linreg(X, log(Y))
+linear_regression(U_values, V_values)
